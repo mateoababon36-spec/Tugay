@@ -1,0 +1,80 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Sorting;
+
+/**
+ *
+ * @author User
+ */
+public class MergeSorting {
+    
+    static void merge(int[] arr, int left, int mid, int right){
+        int[] temp = new int[right - left + 1];
+        
+        int i = left;
+        int j = mid;
+        int k =0;
+        
+        while (i <= mid && j <= right){
+            if (arr[i] <= arr[j]) {
+                temp[k++] = arr[i++];
+        }else{
+                temp[k++] = arr[j++];
+                
+            }
+        }
+        
+        while (i <= mid){
+            temp[k++] = arr[i++];
+        }
+        
+        while (j <= right){
+            temp[k++] = arr[j++];
+            
+            
+        }
+        
+        for (i = 0; i < temp.length; i++){
+            arr[left + i ] = temp[i];
+        }
+        
+        System.out.print("Merge: ");
+        printRange(arr, left, right);
+    }
+    
+    static void mergeSort(int[] arr, int left, int right){
+        if (left < right){
+            int mid = (left + right) / 2;
+            
+            System.out.print("Split:");
+            printRange(arr, left, right);
+            
+            mergeSort(arr, left, mid);
+            
+            mergeSort( arr, mid  + 1, right);
+            
+            merge(arr, left, mid, right);
+            
+                    
+            
+        }
+      
+       
+    }
+    
+    static void printRange(int[] arr, int left, int right){
+        System.out.print("[");
+        for (int i = left; i <= right; i++){
+            System.out.print(arr[i]);
+            
+            if (i < right){
+                System.out.print(",");
+            }
+        }
+        System.out.print("]");
+    }
+    
+    
+}
